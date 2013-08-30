@@ -1,0 +1,8 @@
+bare: true
+clean: false
+indent: true
+quiet: true
+output-html: true
+word-2000: false
+char-encoding: utf8
+hide-comments: false

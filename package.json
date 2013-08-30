@@ -1,0 +1,11 @@
+{
+  "author": "Versal",
+  "name": "doc-to-md",
+  "version": "0.0.0",
+  "dependencies": {
+    "coffee-script": "~1.6",
+    "string": "~1.3",
+    "special-html": "~0.0.1",
+    "marked": "~0.2.8"
+  }
+}
