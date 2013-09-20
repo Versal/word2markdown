@@ -49,9 +49,6 @@ text = text.replace /\u00A0/g, ''
 # Replace no breaking character
 text = text.replace /\u00A0/g, ''
 
-# Intermediate paragraph sanitation
-text = sanitizeParagraphs text
-
 # Collapsing newlines before tags (but not if they start a paragraph)
 text = text.replace /([^\n])\n</g, '$1 <'
 
@@ -60,6 +57,12 @@ text = text.replace /^(\u00b7 (.+\n)+)\n*(?=\u00b7 )/mg, '$1'
 
 # Convert dotted lists to Markdown lists
 text = text.replace /^\u00b7 /mg, '- '
+
+# Put list items in separate paragraphs
+text = text.replace /^(?=[ ]*(-|\+|\*|\d+\.))/mg, '\n\n'
+
+# Intermediate paragraph sanitation
+text = sanitizeParagraphs text
 
 # Replace <mo>-</mo> with unicode line when used on top of an expression
 text = text.replace /<mo>-<\/mo>(\s*<\/mover>)/g, '<mo>&#9472;</mo>$1'
@@ -99,9 +102,6 @@ text = text.replace /\*+(!\[\]\([^)]+\))\*+/gi, '$1'
 
 # Images on separate paragraphs if they are followed by content
 text = text.replace /(!\[\]\([^)]+\))[ ]*(?!\n\n)/g, '\n\n$1\n\n'
-
-# Put list items in separate paragraphs
-text = text.replace /^(?=[ ]*(-|\+|\*|\d+\.))/mg, '\n\n'
 
 text = sanitizeParagraphs text
 
