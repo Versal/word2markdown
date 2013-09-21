@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>word2markdown by Versal</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>word2markdown</h1>
+        <p>Convert Word to Markdown, with images and math</p>
+
+        <p class="view"><a href="https://github.com/Versal/word2markdown">View the Project on GitHub <small>Versal/word2markdown</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/Versal/word2markdown/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Versal/word2markdown/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Versal/word2markdown">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p>At <a href="http://versal.com">Versal</a>, we have created quite a few lessons for internal use, many of which were originally created as Word documents. Now that we've released the first version of our educational platform, we want to convert those lessons for online publication. We have an internal API that allows uploading of Markdown documents, which are then converted to courses with lessons and gadgets. So we only needed to convert our Word documents to Markdown. Sounds easy right?</p>
+
+<p>Not so much. There are a <a href="http://stackoverflow.com/questions/1043768/quickly-convert-rtf-doc-files-to-markdown-syntax-with-php">few</a> <a href="http://gio.act.gov.au/2013/03/13/document-conversion-markdown/">solutions</a>, but they only work for very basic text formatting. Our documents were a bit more complex, containing tables, images, and math -- which proved especially tricky! So using a number of existing tools we hacked together our own conversion script. It consists of 9 consecutive steps:</p>
+
+<ol>
+<li>Exporting to HTML using Microsoft Word 2012. We automated this on OS X using Automator. Solutions for other platforms are welcome!</li>
+<li>Extracting image types that we want to use. Keeps the original quality, unless that's a proprietary .emz file. In this step we also fix some math.</li>
+<li>Converting HTML to XML using <a href="http://ccil.org/%7Ecowan/XML/tagsoup/">tagsoup</a>.</li>
+<li>Covert OOML (proprietary Word format) into MathML equations, using Microsoft's own conversion XSLT, and a custom version of <a href="http://dpcarlisle.blogspot.nl/2007/04/xhtml-and-mathml-from-office-20007.html">this XSLT</a>. Uses <a href="http://saxon.sourceforge.net/">Saxon 8</a>.</li>
+<li>Some intermediate fixes for whitespace and math.</li>
+<li>Conversion back into HTML using <a href="http://tidy.sourceforge.net/">Tidy</a>. Also strips a lot of stuff.</li>
+<li>More intermediate fixes to deal with shortcomings of Tidy and Pandoc.</li>
+<li>Conversion into Markdown using <a href="http://johnmacfarlane.net/pandoc/installing.html">Pandoc</a>.</li>
+<li>Lots of cleanup and final fixes to the Markdown.</li>
+</ol><p>We've released this pipeline as an open source project (MIT License), although it should be noted that you will need to purchase Microsoft Word for this to work. Hopefully this can be a starting point for a more reliable conversion of Word documents!</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Versal">Versal</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
