@@ -51,6 +51,7 @@ a small {
   margin:0 auto;
   padding: 50px;
   background: white;
+  overflow: hidden;
 }
 
 blockquote {
